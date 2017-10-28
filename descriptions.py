@@ -2,8 +2,8 @@ import re
 import json
 
 def parseDescription(desc):
-  conditionMin = None
-  conditionMax = None
+  conditions = []
+  conditions = []
   text = None
   formats = []
   indexHandlers=[]
@@ -12,16 +12,26 @@ def parseDescription(desc):
   # parts[0] -> conditions
   conditionsLine = parts[0].strip().split()
   for condition in conditionsLine:
+    conditionMin = None
+    conditionMax = None
     if '|' in condition.strip():
       conditionValues = condition.strip().split('|')
       if (conditionValues[0] != '#'):
         conditionMin = int(conditionValues[0])
       if (conditionValues[1] != '#'):
         conditionMax = int(conditionValues[1])
+      conditions.append(dict([
+        ('min', conditionMin),
+        ('max', conditionMax)
+      ]))
     else:
       if (condition.strip() != '#'):
         conditionMin = int(condition.strip())
         conditionMax = int(condition.strip())
+        conditions.append(dict([
+          ('min', conditionMin),
+          ('max', conditionMax)
+        ]))
   # parts[1] -> string
   textRaw = parts[1].strip()
   matches = re.findall('%\d([\$\+d%]*)%|%\d(\$\+?d)', textRaw)
@@ -50,7 +60,7 @@ def parseDescription(desc):
     indexHandlers.append(element)
 
   return dict([
-    ('conditions', dict([('min', conditionMin), ('max', conditionMax)])),
+    ('conditions', conditions),
     ('text', text),
     ('formats', formats),
     ('indexHandlers', indexHandlers)
