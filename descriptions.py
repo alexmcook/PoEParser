@@ -20,7 +20,6 @@ def parseDescription(desc):
         conditionMax = int(conditionValues[1])
     else:
       if (condition.strip() != '#'):
-        print(condition.strip())
         conditionMin = int(condition.strip())
         conditionMax = int(condition.strip())
   # parts[1] -> string
