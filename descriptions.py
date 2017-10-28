@@ -20,18 +20,14 @@ def parseDescription(desc):
         conditionMin = int(conditionValues[0])
       if (conditionValues[1] != '#'):
         conditionMax = int(conditionValues[1])
-      conditions.append(dict([
-        ('min', conditionMin),
-        ('max', conditionMax)
-      ]))
     else:
       if (condition.strip() != '#'):
         conditionMin = int(condition.strip())
         conditionMax = int(condition.strip())
-        conditions.append(dict([
-          ('min', conditionMin),
-          ('max', conditionMax)
-        ]))
+    conditions.append(dict([
+      ('min', conditionMin),
+      ('max', conditionMax)
+    ]))
   # parts[1] -> string
   textRaw = parts[1].strip()
   matches = re.findall('%\d([\$\+d%]*)%|%\d(\$\+?d)', textRaw)
