@@ -248,7 +248,7 @@ ids = [
   'Metadata/Items/Weapons',
   'Metadata/Items/Amulet',
 ]
-parsedBases = [x for x in parsedBases if (any(itemID in x['id'] for itemID in ids) and 'Talismans' not in x['id'] and 'Keyblade' not in x['name'] and 'Fishing Rod' not in x['category'])]
+parsedBases = [x for x in parsedBases if (any(itemID in x['id'] for itemID in ids) and 'Talismans' not in x['id'] and 'Keyblade' not in x['name'] and 'Fishing Rod' not in x['category'] and 'Kaom\'s' not in x['name'])]
 ###
 
 with open('./out/bases.json', 'w+') as out:
