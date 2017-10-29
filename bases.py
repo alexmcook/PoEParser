@@ -193,7 +193,8 @@ def parseBase(base):
   verticalSockets = True if (maxSockets > 1 and base['Width'] == 1) else False
 
   ### art
-  artPath = 'web.poecdn.com/image/' + str(artPaths[base['ItemVisualIdentityKey']]) + '.png'
+  ddsPath = artPaths[base['ItemVisualIdentityKey']]
+  artPath = 'web.poecdn.com/image/' + ddsPath.replace('.dds', '.png')
 
   return dict([
     ('id', baseId),
