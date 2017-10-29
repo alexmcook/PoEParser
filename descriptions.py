@@ -1,5 +1,6 @@
 import re
 import json
+from collections import OrderedDict
 
 def parseDescription(desc):
   conditions = []
@@ -24,7 +25,7 @@ def parseDescription(desc):
       if (condition.strip() != '#'):
         conditionMin = int(condition.strip())
         conditionMax = int(condition.strip())
-    conditions.append(dict([
+    conditions.append(OrderedDict([
       ('min', conditionMin),
       ('max', conditionMax)
     ]))
@@ -55,7 +56,7 @@ def parseDescription(desc):
       break
     indexHandlers.append(element)
 
-  return dict([
+  return OrderedDict([
     ('conditions', conditions),
     ('text', text),
     ('formats', formats),
@@ -76,7 +77,7 @@ with open('./src/stat_descriptions.txt', encoding='utf-16') as f:
       parsedDescriptions = []
       for raw in rawDescriptions:
         parsedDescriptions.append(parseDescription(raw))
-      statDescription = dict([
+      statDescription = OrderedDict([
         ('ids', ids),
         #('idCount', idCount),
         ('descriptions', parsedDescriptions)

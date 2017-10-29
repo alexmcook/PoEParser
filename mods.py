@@ -1,4 +1,5 @@
 import json
+from collections import OrderedDict
 
 class DOMAIN:
   ITEM = 1
@@ -47,7 +48,7 @@ for header in mods_json[0]['header']:
 
 mods = []
 for mod in mods_json[0]['data']:
-  mods.append(dict(zip(mods_headers, mod)))
+  mods.append(OrderedDict(zip(mods_headers, mod)))
 
 # stats
 stats_headers = []
@@ -56,7 +57,7 @@ for header in stats_json[0]['header']:
 
 stats = []
 for stat in stats_json[0]['data']:
-  stats.append(dict(zip(stats_headers, stat)))
+  stats.append(OrderedDict(zip(stats_headers, stat)))
 
 # modType
 modTypes = []
@@ -75,7 +76,7 @@ def getStats(mod):
     for i, desc in enumerate(descriptions_json):
       if stats[mod['StatsKey1']]['Id'] in desc['ids']:
         key = i
-    stat1 = dict([
+    stat1 = OrderedDict([
       ('id', stats[mod['StatsKey1']]['Id']),
       ('valueMin', mod['Stat1Min']),
       ('valueMax', mod['Stat1Max']),
@@ -87,7 +88,7 @@ def getStats(mod):
     for i, desc in enumerate(descriptions_json):
       if stats[mod['StatsKey2']]['Id'] in desc['ids']:
         key = i
-    stat2 = dict([
+    stat2 = OrderedDict([
       ('id', stats[mod['StatsKey2']]['Id']),
       ('valueMin', mod['Stat2Min']),
       ('valueMax', mod['Stat2Max']),
@@ -99,7 +100,7 @@ def getStats(mod):
     for i, desc in enumerate(descriptions_json):
       if stats[mod['StatsKey3']]['Id'] in desc['ids']:
         key = i
-    stat3 = dict([
+    stat3 = OrderedDict([
       ('id', stats[mod['StatsKey3']]['Id']),
       ('valueMin', mod['Stat3Min']),
       ('valueMax', mod['Stat3Max']),
@@ -111,7 +112,7 @@ def getStats(mod):
     for i, desc in enumerate(descriptions_json):
       if stats[mod['StatsKey4']]['Id'] in desc['ids']:
         key = i
-    stat4 = dict([
+    stat4 = OrderedDict([
       ('id', stats[mod['StatsKey4']]['Id']),
       ('valueMin', mod['Stat4Min']),
       ('valueMax', mod['Stat4Max']),
@@ -123,7 +124,7 @@ def getStats(mod):
     for i, desc in enumerate(descriptions_json):
       if stats[mod['StatsKey5']]['Id'] in desc['ids']:
         key = i
-    stat5 = dict([
+    stat5 = OrderedDict([
       ('id', stats[mod['StatsKey5']]['Id']),
       ('valueMin', mod['Stat5Min']),
       ('valueMax', mod['Stat5Max']),
@@ -136,13 +137,13 @@ def getSpawnWeights(mod):
   spawnWeightTags = []
   for key in mod['SpawnWeight_TagsKeys']:
     spawnWeightTags.append(tags[key])
-  return dict(zip(spawnWeightTags, mod['SpawnWeight_Values']))
+  return OrderedDict(zip(spawnWeightTags, mod['SpawnWeight_Values']))
 
 def getGenerationWeights(mod):
   generationWeightTags = []
   for key in mod['GenerationWeight_TagsKeys']:
     generationWeightTags.append(tags[key])
-  return dict(zip(generationWeightTags, mod['GenerationWeight_Values']))
+  return OrderedDict(zip(generationWeightTags, mod['GenerationWeight_Values']))
 
 def getTags(mod):
   modTags = []
@@ -151,7 +152,7 @@ def getTags(mod):
   return modTags
 
 def parseMod(mod):
-  out = dict([
+  out = OrderedDict([
     ('id', mod['Id']),
     ('name', mod['Name']),
     ('modType', modTypes[mod['ModTypeKey']]),

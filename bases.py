@@ -1,5 +1,6 @@
 import json
 import re
+from collections import OrderedDict
 
 # load json
 baseItemTypes_data = open('./src/BaseItemTypes.json').read()
