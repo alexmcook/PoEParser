@@ -172,6 +172,13 @@ def parseBase(base):
       ('dex', componentRequirement[0]['ReqDex']),
       ('int', componentRequirement[0]['ReqInt'])
     ])
+  else:
+    requirement = dict([
+      ('level', base['DropLevel']),
+      ('str', 0),
+      ('dex', 0),
+      ('int', 0)
+    ])
 
   ### defense
   defense = None
