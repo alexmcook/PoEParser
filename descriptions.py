@@ -75,14 +75,28 @@ with open('./src/stat_descriptions.txt', encoding='utf-16') as f:
       for i in range(n):
         rawDescriptions.append(f.readline().strip())
       parsedDescriptions = []
-      for raw in rawDescriptions:
-        parsedDescriptions.append(parseDescription(raw))
-      statDescription = OrderedDict([
-        ('ids', ids),
-        #('idCount', idCount),
-        ('descriptions', parsedDescriptions)
-      ])
-      descriptions.append(statDescription)
+      ### Fix for base_chance_to_freeze_% including a second unused id
+      if 'always_freeze' in ids:
+        for raw in rawDescriptions:
+          parsedDescriptions.append(parseDescription(raw))
+        for desc in parsedDescriptions:
+          desc['conditons'] = [desc['conditions'][0]]
+          desc['indexHandlers'] = []
+        statDescription = OrderedDict([
+          ('ids', ids[0:1]),
+          #('idCount', idCount),
+          ('descriptions', parsedDescriptions[1:])
+        ])
+        descriptions.append(statDescription)
+      else :
+        for raw in rawDescriptions:
+          parsedDescriptions.append(parseDescription(raw))
+        statDescription = OrderedDict([
+          ('ids', ids),
+          #('idCount', idCount),
+          ('descriptions', parsedDescriptions)
+        ])
+        descriptions.append(statDescription)
 
 with open('./out/descriptions.json', 'w+') as out:
   json.dump(descriptions, out)
