@@ -80,7 +80,7 @@ with open('./src/stat_descriptions.txt', encoding='utf-16') as f:
         for raw in rawDescriptions:
           parsedDescriptions.append(parseDescription(raw))
         for desc in parsedDescriptions:
-          desc['conditons'] = [desc['conditions'][0]]
+          desc['conditions'] = [desc['conditions'][0]]
           desc['indexHandlers'] = []
         statDescription = OrderedDict([
           ('ids', ids[0:1]),
