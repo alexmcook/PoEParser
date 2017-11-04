@@ -40,9 +40,13 @@ for base in baseItemTypes_json[0]['data']:
 
 def parseEssence(essence):
   essenceId = bases[essence['BaseItemTypesKey']]['Id']
+  minTier = essenceTypes[essence['EssenceTypeKey']]['EssenceType']
+  if minTier == 6:
+    minTier = 8
   if (essenceId != 'Metadata/Items/Currency/CurrencyCorruptMonolith'):
     out = OrderedDict([
       ('id', essenceId),
+      ('minTier', minTier),
       ('name', essenceTypes[essence['EssenceTypeKey']]['Id']),
       ('amulet', mods[essence['Amulet2_ModsKey']]),
       ('belt', mods[essence['Belt2_ModsKey']]),
