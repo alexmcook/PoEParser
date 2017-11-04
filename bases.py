@@ -259,5 +259,14 @@ ids = [
 parsedBases = [x for x in parsedBases if (any(itemID in x['id'] for itemID in ids) and 'Talismans' not in x['id'] and 'Keyblade' not in x['name'] and 'Fishing Rod' not in x['category'] and 'Kaom\'s' not in x['name'])]
 ###
 
+uniqueTags = []
+for base in parsedBases:
+  for tag in base['tags']:
+    if tag not in uniqueTags:
+      uniqueTags.append(tag)
+
 with open('./out/bases.json', 'w+') as out:
   json.dump(parsedBases, out)
+
+with open ('./src/unique_base_tags.json', 'w+') as out:
+  json.dump(uniqueTags, out)

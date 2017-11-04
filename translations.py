@@ -63,7 +63,7 @@ def parseDescription(desc):
     ('indexHandlers', indexHandlers)
   ])
 
-descriptions = []
+translations = []
 with open('./src/stat_descriptions.txt', encoding='utf-16') as f:
   for line in f:
     if line.strip().startswith('description'):
@@ -87,7 +87,7 @@ with open('./src/stat_descriptions.txt', encoding='utf-16') as f:
           #('idCount', idCount),
           ('descriptions', parsedDescriptions[1:])
         ])
-        descriptions.append(statDescription)
+        translations.append(statDescription)
       else :
         for raw in rawDescriptions:
           parsedDescriptions.append(parseDescription(raw))
@@ -96,7 +96,7 @@ with open('./src/stat_descriptions.txt', encoding='utf-16') as f:
           #('idCount', idCount),
           ('descriptions', parsedDescriptions)
         ])
-        descriptions.append(statDescription)
+        translations.append(statDescription)
 
-with open('./out/descriptions.json', 'w+') as out:
-  json.dump(descriptions, out)
+with open('./out/translations.json', 'w+') as out:
+  json.dump(translations, out)

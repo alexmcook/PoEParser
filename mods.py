@@ -38,8 +38,8 @@ tags_data = open('./src/Tags.json').read()
 tags_json = json.loads(tags_data)
 stats_data = open('./src/Stats.json').read()
 stats_json = json.loads(stats_data)
-descriptions_data = open('./out/descriptions.json').read()
-descriptions_json = json.loads(descriptions_data)
+translations_data = open('./out/translations.json').read()
+translations_json = json.loads(translations_data)
 
 # mods
 mods_headers = []
@@ -73,7 +73,7 @@ def getStats(mod):
   mod_stats = []
   if (mod['StatsKey1'] != None):
     key = None
-    for i, desc in enumerate(descriptions_json):
+    for i, desc in enumerate(translations_json):
       if stats[mod['StatsKey1']]['Id'] in desc['ids']:
         key = i
     stat1 = OrderedDict([
@@ -85,7 +85,7 @@ def getStats(mod):
     mod_stats.append(stat1)
   if (mod['StatsKey2'] != None):
     key = None
-    for i, desc in enumerate(descriptions_json):
+    for i, desc in enumerate(translations_json):
       if stats[mod['StatsKey2']]['Id'] in desc['ids']:
         key = i
     stat2 = OrderedDict([
@@ -97,7 +97,7 @@ def getStats(mod):
     mod_stats.append(stat2)
   if (mod['StatsKey3'] != None):
     key = None
-    for i, desc in enumerate(descriptions_json):
+    for i, desc in enumerate(translations_json):
       if stats[mod['StatsKey3']]['Id'] in desc['ids']:
         key = i
     stat3 = OrderedDict([
@@ -109,7 +109,7 @@ def getStats(mod):
     mod_stats.append(stat3)
   if (mod['StatsKey4'] != None):
     key = None
-    for i, desc in enumerate(descriptions_json):
+    for i, desc in enumerate(translations_json):
       if stats[mod['StatsKey4']]['Id'] in desc['ids']:
         key = i
     stat4 = OrderedDict([
@@ -121,7 +121,7 @@ def getStats(mod):
     mod_stats.append(stat4)
   if (mod['StatsKey5'] != None):
     key = None
-    for i, desc in enumerate(descriptions_json):
+    for i, desc in enumerate(translations_json):
       if stats[mod['StatsKey5']]['Id'] in desc['ids']:
         key = i
     stat5 = OrderedDict([
