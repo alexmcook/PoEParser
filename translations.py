@@ -69,7 +69,7 @@ with open('./src/stat_descriptions.txt', encoding='utf-16') as f:
     if line.strip().startswith('description'):
       m = re.match('(\d)+ (.*)', f.readline().strip())
       idCount = int(m.group(1))
-      ids = m.group(2).split(' ')
+      ids = m.group(2).split()
       n = int(f.readline().strip())
       rawDescriptions = []
       for i in range(n):
