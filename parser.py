@@ -7,5 +7,7 @@ import bases
 print('...')
 import essences
 print('...')
+import crafting
+print('...')
 import names
 print('Complete')
