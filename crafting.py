@@ -83,7 +83,9 @@ def parseCraftingOption(option):
 
 parsedCraftingOptions = []
 for craftingOption in craftingOptions:
-  parsedCraftingOptions.append(parseCraftingOption(craftingOption))
+  parsed = parseCraftingOption(craftingOption)
+  if (parsed):
+    parsedCraftingOptions.append(parseCraftingOption(craftingOption))
 
 with open('./out/craftingOptions.json', 'w+') as out:
   json.dump(parsedCraftingOptions, out)
