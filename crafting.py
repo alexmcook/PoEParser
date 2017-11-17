@@ -59,6 +59,9 @@ def getCustomAction(remove, sockets, colors, links):
 def parseCraftingOption(option):
   if (option['ModsKey'] != None):
     mod = mods[option['ModsKey']]
+    for stat in mod['stats']:
+      if (stat['key'] and stat['key'] < 10000):
+        stat['key'] += 10000
     name = mod['id']
   else:
     mod = None
