@@ -31,11 +31,11 @@ def parseDescription(desc):
     ]))
   # parts[1] -> string
   textRaw = parts[1].strip()
-  matches = re.findall('%\d([\$\+d%]*)%|%\d(\$\+?d)', textRaw)
+  matches = re.findall('%[\dd]([\$\+d%]*)%|%\d(\$\+?d)', textRaw)
   for match in matches:
     if ((match[0] == '' and match[1] == '') or match[1] == '$d'):
       formats.append('#')
-    elif (match[0] == '%%' or match[0] == '$d%'):
+    elif (match[0] == '%' or match[0] == '%%' or match[0] == '$d%'):
       formats.append('#%')
     elif (match[1] == '$+d'):
       formats.append('+#')
@@ -45,10 +45,15 @@ def parseDescription(desc):
       raise Exception('No format found for ' + textRaw)
   ### replace ex %1$+d%% with {0}
   def repl(match):
-    return '{' + str(int(match.group(1)) - 1) + '}'
-  text = re.sub('%(\d)([\w\d\+\$%]*%|\$\+?d)', repl, textRaw)
+    m = match.group(1)
+    if (m == 'd'):
+      m = '0'
+    else:
+      m = str(int(m) - 1)
+    return '{' + m + '}'
+  text = re.sub('%([\dd])([\w\d\+\$%]*%|\$\+?d)', repl, textRaw)
   ### replace %% with %
-  text = re.sub('([^%])(%%)([^%])', '\\1%\\3', text)
+  text = re.sub('([^%d])(%%)([^%])', '\\1%\\3', text)
   # parts[2] -> indexHandlers/reminders
   indexHandlerLine = parts[2].strip().split()
   for element in indexHandlerLine:

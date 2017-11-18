@@ -76,6 +76,8 @@ def getStats(mod):
     for i, desc in enumerate(translations_json):
       if stats[mod['StatsKey1']]['Id'] in desc['ids']:
         key = i
+        if ('Master' in mod['Id'] and 'Vendor' not in mod['Id']):
+          key += 10000
     stat1 = OrderedDict([
       ('id', stats[mod['StatsKey1']]['Id']),
       ('valueMin', mod['Stat1Min']),
@@ -88,6 +90,8 @@ def getStats(mod):
     for i, desc in enumerate(translations_json):
       if stats[mod['StatsKey2']]['Id'] in desc['ids']:
         key = i
+        if ('Master' in mod['Id'] and 'Vendor' not in mod['Id']):
+          key += 10000
     stat2 = OrderedDict([
       ('id', stats[mod['StatsKey2']]['Id']),
       ('valueMin', mod['Stat2Min']),
@@ -100,6 +104,8 @@ def getStats(mod):
     for i, desc in enumerate(translations_json):
       if stats[mod['StatsKey3']]['Id'] in desc['ids']:
         key = i
+        if ('Master' in mod['Id'] and 'Vendor' not in mod['Id']):
+          key += 10000
     stat3 = OrderedDict([
       ('id', stats[mod['StatsKey3']]['Id']),
       ('valueMin', mod['Stat3Min']),
@@ -112,6 +118,8 @@ def getStats(mod):
     for i, desc in enumerate(translations_json):
       if stats[mod['StatsKey4']]['Id'] in desc['ids']:
         key = i
+        if ('Master' in mod['Id'] and 'Vendor' not in mod['Id']):
+          key += 10000
     stat4 = OrderedDict([
       ('id', stats[mod['StatsKey4']]['Id']),
       ('valueMin', mod['Stat4Min']),
@@ -124,6 +132,8 @@ def getStats(mod):
     for i, desc in enumerate(translations_json):
       if stats[mod['StatsKey5']]['Id'] in desc['ids']:
         key = i
+        if ('Master' in mod['Id'] and 'Vendor' not in mod['Id']):
+          key += 10000
     stat5 = OrderedDict([
       ('id', stats[mod['StatsKey5']]['Id']),
       ('valueMin', mod['Stat5Min']),

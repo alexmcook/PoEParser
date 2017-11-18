@@ -96,7 +96,7 @@ def getItemTypes(keys):
     out.append(itemClasses[key]['Id'])
   return out
 
-def getCustomAction(remove, sockets, colors, links):
+def getCustomAction(remove, links, colors, sockets):
   removeMod = False
   if (remove == 1):
     removeMod = True
@@ -216,9 +216,6 @@ def getText(option):
 def parseCraftingOption(option):
   if (option['ModsKey'] != None):
     mod = mods[option['ModsKey']]
-    for stat in mod['stats']:
-      if (stat['key'] and stat['key'] < 10000):
-        stat['key'] += 10000
     name = mod['id']
   else:
     mod = None
