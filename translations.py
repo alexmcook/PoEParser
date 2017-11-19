@@ -104,7 +104,7 @@ with open('./src/stat_descriptions.txt', encoding='utf-16') as f:
         translations.append(statDescription)
 
 with open('./src/translations_parsed.json', 'w+') as out:
-  json.dump(translations, out)
+  json.dump(translations, out, ensure_ascii=False)
 
 with open('./out/translations.json', 'w+') as out:
-  json.dump(translations, out)
+  json.dump(translations, out, ensure_ascii=False)

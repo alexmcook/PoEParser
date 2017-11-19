@@ -183,7 +183,7 @@ for mod in mods:
   parsedMods.append(parseMod(mod))
 
 with open('./src/mods_parsed.json', 'w+') as out:
-  json.dump(parsedMods, out)
+  json.dump(parsedMods, out, ensure_ascii=False)
 
 ###
 domains = [DOMAIN.ITEM, DOMAIN.JEWEL, DOMAIN.MASTER]
@@ -191,4 +191,4 @@ parsedMods = [x for x in parsedMods if x['domain'] in domains]
 ###
 
 with open('./out/mods.json', 'w+') as out:
-  json.dump(parsedMods, out)
+  json.dump(parsedMods, out, ensure_ascii=False)

@@ -247,4 +247,4 @@ for craftingOption in craftingOptions:
     parsedCraftingOptions.append(parseCraftingOption(craftingOption))
 
 with open('./out/craftingOptions.json', 'w+') as out:
-  json.dump(parsedCraftingOptions, out)
+  json.dump(parsedCraftingOptions, out, ensure_ascii=False)

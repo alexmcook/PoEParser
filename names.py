@@ -79,4 +79,4 @@ namesStructured = OrderedDict({ 'prefixes': namePrefixes, 'suffixes': nameSuffix
 ###
 
 with open('./out/names.json', 'w+') as out:
-  json.dump(namesStructured, out)
+  json.dump(namesStructured, out, ensure_ascii=False)

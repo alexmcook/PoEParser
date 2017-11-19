@@ -242,7 +242,7 @@ for weapon in weaponTypes:
 
 
 with open('./src/bases_parsed.json', 'w+') as out:
-  json.dump(parsedBases, out)
+  json.dump(parsedBases, out, ensure_ascii=False)
 
 ###
 ids = [
@@ -266,7 +266,7 @@ for base in parsedBases:
       uniqueTags.append(tag)
 
 with open('./out/bases.json', 'w+') as out:
-  json.dump(parsedBases, out)
+  json.dump(parsedBases, out, ensure_ascii=False)
 
 with open ('./src/unique_base_tags.json', 'w+') as out:
-  json.dump(uniqueTags, out)
+  json.dump(uniqueTags, out, ensure_ascii=False)
