@@ -46,6 +46,7 @@ def parseEssence(essence):
   if (essenceId != 'Metadata/Items/Currency/CurrencyCorruptMonolith'):
     out = OrderedDict([
       ('id', essenceId),
+      ('tier', essence['Tier']),
       ('minTier', minTier),
       ('name', essenceTypes[essence['EssenceTypeKey']]['Id']),
       ('amulet', mods[essence['Amulet2_ModsKey']]),
