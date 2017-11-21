@@ -1,13 +1,16 @@
 print('Running')
+print('... Translations')
 import translations
-print('...')
+print('... Mods')
 import mods
-print('...')
+print('... Bases')
 import bases
-print('...')
+print('... Essences')
 import essences
-print('...')
+print('... EssenceTexts')
+import essenceTexts
+print('... Crafting')
 import crafting
-print('...')
+print('... Names')
 import names
 print('Complete')

@@ -71,5 +71,8 @@ for essence in essences:
   if (parsed):
     parsedEssences.append(parsed)
 
+with open('./src/essences_parsed.json', 'w+') as out:
+  json.dump(parsedEssences, out, ensure_ascii=False)
+
 with open('./out/essences.json', 'w+') as out:
   json.dump(parsedEssences, out, ensure_ascii=False)
