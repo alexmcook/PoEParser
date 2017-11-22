@@ -55,11 +55,11 @@ for essence in essenceData:
   trimmedText = []
   for text in essenceText:
     trimmedText.append(text.strip())
-  output.append({ text: trimmedText})
   out = OrderedDict([
-      ('id', essence['id']),
+      ('id', essences[essenceData.index(essence)]['name'] + str(essences[essenceData.index(essence)]['tier'])),
       ('text', trimmedText),
     ])
+  output.append(out)
 
 with open('./out/essenceText.json', 'w+') as out:
   json.dump(output, out)

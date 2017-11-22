@@ -240,6 +240,13 @@ def getWeapon(weapon):
 for weapon in weaponTypes:
   parsedBases[weapon['BaseItemTypesKey']]['weapon'] = getWeapon(weapon)
 
+for base in parsedBases:
+  if (base['defense'] and 
+  base['defense']['armor'] == 0 and 
+  base['defense']['evasion'] == 0 and 
+  base['defense']['energyShield'] == 0 and 
+  base['defense']['block'] == None):
+    base['defense'] = None
 
 with open('./src/bases_parsed.json', 'w+') as out:
   json.dump(parsedBases, out, ensure_ascii=False)
