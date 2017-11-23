@@ -2,6 +2,10 @@ import re
 import json
 from collections import OrderedDict
 
+
+mod_ids_data = open('./src/mod_ids_parsed.json').read()
+mod_ids = json.loads(mod_ids_data)
+
 def parseDescription(desc):
   conditions = []
   conditions = []
@@ -105,6 +109,10 @@ with open('./src/stat_descriptions.txt', encoding='utf-16') as f:
 
 with open('./src/translations_parsed.json', 'w+') as out:
   json.dump(translations, out, ensure_ascii=False)
+
+###
+translations = [x for x in translations if any(mod_id in x['ids'] for mod_id in mod_ids)]
+###
 
 with open('./out/translations.json', 'w+') as out:
   json.dump(translations, out, ensure_ascii=False)

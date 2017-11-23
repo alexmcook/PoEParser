@@ -188,7 +188,19 @@ with open('./src/mods_parsed.json', 'w+') as out:
 ###
 domains = [DOMAIN.ITEM, DOMAIN.JEWEL, DOMAIN.MASTER]
 parsedMods = [x for x in parsedMods if x['domain'] in domains]
+parsedMods = [x for x in parsedMods if not (
+  (x['domain'] == DOMAIN.ITEM or x['domain'] == DOMAIN.JEWEL) and 
+  x['generationType'] == GENERATION_TYPE.UNIQUE and
+  'implicit' not in x['id'].lower()
+  )]
+parsedMods = [x for x in parsedMods if x['generationType'] != GENERATION_TYPE.ENCHANTMENT]
+
+stats = [x['stats'] for x in parsedMods]
+ids = list({x[0]['id'] for x in stats})
 ###
+
+with open('./src/mod_ids_parsed.json', 'w+') as out:
+  json.dump(ids, out, ensure_ascii=False)
 
 with open('./out/mods.json', 'w+') as out:
   json.dump(parsedMods, out, ensure_ascii=False)

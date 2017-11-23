@@ -113,7 +113,10 @@ def parseOTFile(path):
       parentTags.append(tag)
     socketLine = [x for x in f if 'socket_info' in x]
     if (len(socketLine) > 0 and sockets == 0):
-      socketMatch = re.match('socket_info = "\d+:(\d+):\d+ \d+:(\d+):\d+ \d+:(\d+):\d+ \d+:(\d+):\d+ \d+:(\d+):\d+ \d+:(\d+):\d+"', socketLine[0].strip())
+      socketMatch = re.match(
+        'socket_info = "\d+:(\d+):\d+ \d+:(\d+):\d+ \d+:(\d+):\d+ \d+:(\d+):\d+ \d+:(\d+):\d+ \d+:(\d+):\d+"', 
+        socketLine[0].strip()
+        )
       for i in range(1, 7):
         if (int(socketMatch.group(i)) < 9999):
           sockets += 1        
@@ -263,7 +266,11 @@ ids = [
   'Metadata/Items/Weapons',
   'Metadata/Items/Amulet',
 ]
-parsedBases = [x for x in parsedBases if (any(itemID in x['id'] for itemID in ids) and 'Talismans' not in x['id'] and 'Keyblade' not in x['name'] and 'Fishing Rod' not in x['category'] and 'Kaom\'s' not in x['name'])]
+parsedBases = [x for x in parsedBases if (
+  any(itemID in x['id'] for itemID in ids) and 
+  'Talismans' not in x['id'] and 'Keyblade' not in x['name'] and 
+  'Fishing Rod' not in x['category'] and 'Kaom\'s' not in x['name']
+  )]
 ###
 
 uniqueTags = []
