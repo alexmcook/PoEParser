@@ -197,7 +197,18 @@ parsedMods = [x for x in parsedMods if x['generationType'] != GENERATION_TYPE.EN
 
 stats = [x['stats'] for x in parsedMods]
 ids = list({x[0]['id'] for x in stats})
+
+parsedModTypes = list({x['modType'] for x in parsedMods})
+parsedModsByType = dict.fromkeys(parsedModTypes)
+for key in parsedModsByType.keys():
+  parsedModsByType[key] = []
+for mod in parsedMods:
+  parsedModsByType[mod['modType']].append(mod)
 ###
+
+for mod in parsedMods:
+  if 'Essence' not in mod['id'] and mod['essenceOnly'] == True:
+    print(mod['id'])
 
 with open('./src/mod_ids_parsed.json', 'w+') as out:
   json.dump(ids, out, ensure_ascii=False)

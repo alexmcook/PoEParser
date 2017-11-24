@@ -135,9 +135,6 @@ def parseBase(base):
   name = base['Name']
 
   baseType = itemClasses[base['ItemClassesKey']]['Id']
-  if (' Hand ' in baseType):
-    baseType = re.sub(' Hand ', ' Handed ', baseType)
-
   category = itemClasses[base['ItemClassesKey']]['Category']
   if (category == ''):
     if (baseType == 'FishingRod'):
