@@ -111,7 +111,7 @@ with open('./src/translations_parsed.json', 'w+') as out:
   json.dump(translations, out, ensure_ascii=False)
 
 ###
-translations = [x for x in translations if any(mod_id in x['ids'] for mod_id in mod_ids)]
+translations = [x for x in translations if (any(mod_id in x['ids'] for mod_id in mod_ids))]
 ###
 
 with open('./out/translations.json', 'w+') as out:
