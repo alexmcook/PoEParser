@@ -97,6 +97,19 @@ with open('./src/stat_descriptions.txt', encoding='utf-16') as f:
           ('descriptions', parsedDescriptions[1:])
         ])
         translations.append(statDescription)
+      ### Fix for bleed_on_hit_with_attacks_% including two unused ids
+      elif 'global_bleed_on_hit' in ids:
+        for raw in rawDescriptions:
+          parsedDescriptions.append(parseDescription(raw))
+        for desc in parsedDescriptions:
+          desc['conditions'] = [desc['conditions'][0]]
+          desc['indexHandlers'] = []
+        statDescription = OrderedDict([
+          ('ids', ids[0:1]),
+          #('idCount', idCount),
+          ('descriptions', parsedDescriptions[0:2])
+        ])
+        translations.append(statDescription)
       else :
         for raw in rawDescriptions:
           parsedDescriptions.append(parseDescription(raw))
