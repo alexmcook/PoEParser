@@ -211,6 +211,12 @@ parsedMods = [x for x in parsedMods if not (
   )]
 parsedMods = [x for x in parsedMods if x['generationType'] != GENERATION_TYPE.ENCHANTMENT]
 
+badIds = ['LocalIncreasedAttackSpeedTwoHandedDoubleDamageUber1',
+'LocalIncreasedAttackSpeedTwoHandedDoubleDamageUber2',
+'LocalIncreasedAttackSpeedRangedDoubleDamageUber1',
+'LocalIncreasedAttackSpeedRangedDoubleDamageUber2']
+parsedMods = [x for x in parsedMods if x['id'] not in badIds]
+
 stats = [x['stats'] for x in parsedMods]
 ids = list({x[0]['id'] for x in stats})
 ###
