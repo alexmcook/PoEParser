@@ -217,7 +217,9 @@ def parseBase(base):
     ('verticalSockets', verticalSockets),
     ('requirement', requirement),
     ('defense', defense),
-    ('weapon', weapon)
+    ('weapon', weapon),
+    ('w', base['Width']),
+    ('h', base['Height'])
   ])
 
 parsedBases = []
