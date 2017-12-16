@@ -15,6 +15,8 @@ class DOMAIN:
   JEWEL = 11
   ATLAS = 12
   LEAGUESTONE = 13
+  ABYSSJEWEL = 14
+  MAPFRAGIIQ = 15
 
 class GENERATION_TYPE:
   PREFIX = 1
@@ -141,6 +143,20 @@ def getStats(mod):
       ('value', None),
       ('key', key)])
     mod_stats.append(stat5)
+  if (mod['StatsKey6'] != None):
+    key = None
+    for i, desc in enumerate(translations_json):
+      if stats[mod['StatsKey6']]['Id'] in desc['ids']:
+        key = i
+        if ('Master' in mod['Id'] and 'Vendor' not in mod['Id']):
+          key += 10000
+    stat6 = OrderedDict([
+      ('id', stats[mod['StatsKey6']]['Id']),
+      ('valueMin', mod['Stat6Min']),
+      ('valueMax', mod['Stat6Max']),
+      ('value', None),
+      ('key', key)])
+    mod_stats.append(stat6)
   return mod_stats
 
 def getSpawnWeights(mod):
@@ -186,7 +202,7 @@ with open('./src/mods_parsed.json', 'w+') as out:
   json.dump(parsedMods, out, ensure_ascii=False)
 
 ###
-domains = [DOMAIN.ITEM, DOMAIN.JEWEL, DOMAIN.MASTER]
+domains = [DOMAIN.ITEM, DOMAIN.JEWEL, DOMAIN.MASTER, DOMAIN.ABYSSJEWEL]
 parsedMods = [x for x in parsedMods if x['domain'] in domains]
 parsedMods = [x for x in parsedMods if not (
   (x['domain'] == DOMAIN.ITEM or x['domain'] == DOMAIN.JEWEL) and 

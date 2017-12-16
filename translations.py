@@ -3,8 +3,8 @@ import json
 from collections import OrderedDict
 
 
-mod_ids_data = open('./src/mod_ids_parsed.json').read()
-mod_ids = json.loads(mod_ids_data)
+#mod_ids_data = open('./src/mod_ids_parsed.json').read()
+#mod_ids = json.loads(mod_ids_data)
 
 def parseDescription(desc):
   conditions = []
@@ -110,6 +110,21 @@ with open('./src/stat_descriptions.txt', encoding='utf-16') as f:
           ('descriptions', parsedDescriptions[0:2])
         ])
         translations.append(statDescription)
+      ### Fix for chance_to_gain_onslaught_on_kill_% including a second unused id
+      elif 'onslaught_time_granted_on_kill_ms' in ids:
+        for raw in rawDescriptions:
+          parsedDescriptions.append(parseDescription(raw))
+        for desc in parsedDescriptions:
+          desc['conditions'] = [desc['conditions'][0]]
+          desc['indexHandlers'] = []
+          if '{1}' in desc['text']:
+            desc['text'] = desc['text'].replace('{1}', '4')
+        statDescription = OrderedDict([
+          ('ids', ids[0:1]),
+          #('idCount', idCount),
+          ('descriptions', parsedDescriptions[1:])
+        ])
+        translations.append(statDescription)
       else :
         for raw in rawDescriptions:
           parsedDescriptions.append(parseDescription(raw))
@@ -124,7 +139,7 @@ with open('./src/translations_parsed.json', 'w+') as out:
   json.dump(translations, out, ensure_ascii=False)
 
 ###
-translations = [x for x in translations if (any(mod_id in x['ids'] for mod_id in mod_ids))]
+#translations = [x for x in translations if (any(mod_id in x['ids'] for mod_id in mod_ids))]
 ###
 
 with open('./out/translations.json', 'w+') as out:
